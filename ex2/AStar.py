@@ -54,22 +54,3 @@ def astar(array, start, goal):
                     heappush(oheap, (fscore[neighbor], neighbor))
                 
     return False
-
-'''Here is an example of using my algo with a numpy array,
-   astar(array, start, destination)
-   astar function returns a list of points (shortest path)'''
-
-nmap = numpy.array([
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [1,1,1,1,1,1,1,1,1,1,1,1,0,1],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [1,0,1,1,1,1,1,1,1,1,1,1,1,1],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [1,1,1,1,1,1,1,1,1,1,1,1,0,1],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [1,0,1,1,1,1,1,1,1,1,1,1,1,1],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [1,1,1,1,1,1,1,1,1,1,1,1,0,1],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0]])
-    
-print(astar(nmap, (0,0), (10,13)))
