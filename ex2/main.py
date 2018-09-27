@@ -1,38 +1,15 @@
 import sys
 import numpy
-from AStar import wall, astar
+from AStar import astar, wall
 from draw import draw_board
+from parser import parse_board
 
-filename = sys.argv[1]
-input_file = open(filename, "r")
-board = []
-ax = 0
-ay = 0
-bx = 0
-by = 0
-y = 0
-for line in input_file:
-    a = []
-    x = 0
-    for c in line:
-        if c == '#':
-            a.append(wall)
-        elif c == 'A':
-            ax = x
-            ay = y
-            a.append(0)
-        elif c == 'B':
-            bx = x
-            by = y
-            a.append(0)
-        else:
-            a.append(0)
-        x += 1
-    board.append(a)
-    y += 1
+filename = sys.argv[1] # Read filename as command line argument
 
-nmap = numpy.array(board)
-path = astar(nmap, (ay, ax), (by, bx))
+(ax, ay), (bx, by), nmap = parse_board(filename)
+
+path = astar(nmap, (ay, ax), (by, bx)) # Calculate the shortest path
+
 for r in path:
     nmap[r[0],r[1]] = -1 # Set solution tiles to -1
 
@@ -41,11 +18,15 @@ nmap[by, bx] = -3 # Set the value of b to -3 (used for visualisation)
 
 # Declare the colors of the tiles
 colors = {
-    0 : (255, 255, 255),
-    1 : ( 60,  60,  60),
-   -1 : (255, 255,   0),
-   -2 : (  0, 255,   0),
-   -3 : (255,   0,   0)
+       1 : (255, 255, 255),
+     100 : (  0,   0, 255),
+      50 : (150, 150, 150),
+      10 : (  0, 150,   0),
+       5 : ( 51, 255, 102),
+      -1 : (255, 255,   0),
+      -2 : (  0, 255,   0),
+      -3 : (255,   0,   0),
+    wall : ( 60,  60,  60),
 }
 
 draw_board(nmap, colors)

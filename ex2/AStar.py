@@ -6,7 +6,7 @@
 import numpy
 from heapq import heappush, heappop
 
-wall = 1
+wall = 100000
 
 # manhattan distance as heuristic
 def heuristic(a, b):
@@ -39,7 +39,7 @@ def astar(array, start, goal):
         close_set.add(current)
         for i, j in neighbors:
             neighbor = current[0] + i, current[1] + j            
-            tentative_g_score = gscore[current] + heuristic(current, neighbor)
+            tentative_g_score = gscore[current] + array[current[0]][current[1]]
             if is_inside(neighbor, array):
                 if array[neighbor[0]][neighbor[1]] == wall:
                     continue # skip if cell is a wall
