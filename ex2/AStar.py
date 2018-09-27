@@ -53,4 +53,4 @@ def astar(array, start, goal):
                     fscore[neighbor] = tentative_g_score + heuristic(neighbor, goal)
                     heappush(oheap, (fscore[neighbor], neighbor))
                 
-    return False
+    return False # False if no path was found
