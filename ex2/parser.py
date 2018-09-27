@@ -39,4 +39,3 @@ def parse_board(file_name: str):
         board.append(a)
         y += 1
     return (ax, ay), (bx, by), numpy.array(board)
-    
