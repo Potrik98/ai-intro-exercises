@@ -38,8 +38,11 @@ def astar(array, start, goal):
 
         close_set.add(current)
         for i, j in neighbors:
-            neighbor = current[0] + i, current[1] + j            
-            tentative_g_score = gscore[current] + array[current[0]][current[1]]
+            neighbor = current[0] + i, current[1] + j
+            movement_cost = array[current[0]][current[1]]
+            if movement_cost == 0:
+                movement_cost = 1
+            tentative_g_score = gscore[current] + movement_cost
             if is_inside(neighbor, array):
                 if array[neighbor[0]][neighbor[1]] == wall:
                     continue # skip if cell is a wall

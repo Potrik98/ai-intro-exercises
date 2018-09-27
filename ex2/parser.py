@@ -3,7 +3,7 @@ from AStar import wall
 
 # movement cost of the different tiles
 tiles = {
-    '.' : 1, # an empty tile has a cost of 1
+    '.' : 0,
     '#' : wall,
     'w' : 100,
     'm' : 50,
