@@ -1,6 +1,7 @@
 import sys
 import numpy
 from AStar import wall, astar
+from draw import draw_board
 
 filename = sys.argv[1]
 input_file = open(filename, "r")
@@ -31,11 +32,15 @@ for line in input_file:
     y += 1
 
 nmap = numpy.array(board)
-print(nmap)
-res = astar(nmap, (ay, ax), (by, bx))
-print("---\n")
+path = astar(nmap, (ay, ax), (by, bx))
+for r in path:
+    nmap[r[0],r[1]] = -1 # Set solution tiles to -1
 
-for r in res:
-    nmap[r[0],r[1]] = 9
+# Declare the colors of the tiles
+colors = {
+    0 : (255, 255, 255),
+    1 : ( 60,  60,  60),
+   -1 : (255,   0,   0)
+}
 
-print(nmap)
+draw_board(nmap, colors)
